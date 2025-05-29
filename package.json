@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/TahraouiMustapha/miniMessageBoard#readme",
   "dependencies": {
+    "date-fns": "^4.1.0",
+    "ejs": "^3.1.10",
     "express": "^5.1.0"
   }
 }
