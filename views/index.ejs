@@ -1,0 +1,14 @@
+
+<html>
+    <body>
+        <div>
+            <% messages.forEach( msg => { %>
+                <div>
+                    <h2><%= msg.user %></h2>
+                    <p> <%= msg.added %></p>
+                    <p><%= msg.text %></p>
+                </div>
+            <% }) %> 
+        </div>
+    </body>
+</html>
