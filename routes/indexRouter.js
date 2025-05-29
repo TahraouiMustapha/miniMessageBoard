@@ -27,4 +27,9 @@ indexRouter.get("/", (req, res) => {
   res.render("index",{messages: formattedMessages} )
 })
 
+indexRouter.post("/new", (req, res)=> {
+  console.log("request form reveived !")
+  res.send("good receive");
+})
+
 module.exports = indexRouter;

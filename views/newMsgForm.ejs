@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title> new Message</title>
+    </head>
+    <body>
+        <form method="POST" action="/new">
+            <h1>New Message</h1>
+            <p>
+                <label for="user_name">
+                     <span>Your name: </span>
+                    <strong>
+                        <span aria-label="required">*</span>
+                    </strong>
+                </label>
+                <input type="text" id="user_name" name="name">
+            </p>
+            <p>
+                <label for="user_text">Your msg :</label>
+                <input type="text" id="user_text" name="text">
+            </p>
+
+            <p>
+                <button> Submit </button>
+            </p>
+        </form>
+    </body>
+</html>
