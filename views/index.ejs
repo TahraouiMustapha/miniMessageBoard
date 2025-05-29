@@ -1,5 +1,8 @@
 
 <html>
+    <head>
+        <title> Message Board </title>
+    </head>
     <body>
         <div>
             <% messages.forEach( msg => { %>
@@ -9,6 +12,9 @@
                     <p><%= msg.text %></p>
                 </div>
             <% }) %> 
+
+            <a href="/new">New Message</a> 
         </div>
+
     </body>
 </html>

@@ -28,8 +28,13 @@ indexRouter.get("/", (req, res) => {
 })
 
 indexRouter.post("/new", (req, res)=> {
-  console.log("request form reveived !")
-  res.send("good receive");
+  const newMsg = {
+    text: req.body.userText,
+    user: req.body.userName,
+    added: new Date()
+  }
+  messages.push(newMsg);
+  res.redirect("/");
 })
 
 module.exports = indexRouter;

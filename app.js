@@ -10,6 +10,8 @@ app.set("view engine", "ejs")
 const indexRouter = require('./routes/indexRouter')
 const newMsgRouter = require('./routes/newMsgRouter')
 
+// middlware to parse form data
+app.use(express.urlencoded({ extended: true }));
 
 
 app.use("/", indexRouter);
