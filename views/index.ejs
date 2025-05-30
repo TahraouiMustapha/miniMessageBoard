@@ -1,13 +1,14 @@
 
 <html>
     <head>
+        <link rel="stylesheet" href="/styles.css">
         <title> Message Board </title>
     </head>
     <body>
-        <div>
+        <div class="container">
             <% messages.forEach( msg => { %>
                 <a href=<%= `/messages/${msg.id}`%>>
-                    <div>
+                    <div class="message">
                         <h2><%= msg.user %></h2>
                         <p> <%= msg.added %></p>
                         <p><%= msg.text %></p>
@@ -15,8 +16,8 @@
                 </a>
             <% }) %> 
 
-            <a href="/new">New Message</a> 
         </div>
+        <a class="newMsgBtn" href="/new"> + New Message</a> 
 
     </body>
 </html>
