@@ -1,15 +1,18 @@
 <html>
     <head>
+        <link rel="stylesheet" href="/global.css">
         <link rel="stylesheet" href="/messageDetails.css">
         <title>
             Message details
         </title>
     </head>
     <body>
-        <div>
+        <div class="messageContainer">
             <h1><%= msg.user%></h1>
             <p><%= msg.added%></p>
             <p><%= msg.text%></p>
+
+            <a class="returnLink" href="/"> ← Back to home</a>
         </div>
     </body>
     

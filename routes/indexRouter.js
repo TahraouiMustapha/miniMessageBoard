@@ -48,8 +48,8 @@ indexRouter.get("/messages/:msgId", (req, res) => {
 indexRouter.post("/new", (req, res)=> {
   const newMsg = {
     id: messages.length + 1,
-    text: req.body.userText,
-    user: req.body.userName,
+    text: req.body.userText || 'no text submit' ,
+    user: req.body.userName || 'no input sir!',
     added: new Date()
   }
   messages.push(newMsg);
