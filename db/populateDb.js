@@ -2,7 +2,7 @@ const { Client } = require('pg');
 require('dotenv').config();
 
 
-const currentDate = new Date().toISOString().split('T')[0];
+const currentDate = new Date();
 
 const SQL = `
     CREATE TABLE IF NOT EXISTS messages (
@@ -11,11 +11,6 @@ const SQL = `
         username VARCHAR(30),
         added DATE
     );
-
-    INSERT INTO messages (text, username, added) 
-    VALUES 
-        ('Hi there!', 'amando', '${currentDate}'),
-        ('Hi!', 'kamal', '${currentDate}');
 `;
 
 async function main() {
@@ -26,6 +21,13 @@ async function main() {
 
     await client.connect();
     await client.query(SQL);
+    await client.query(
+        `INSERT INTO messages (text, username, added) 
+        VALUES 
+        ('Hi there!', 'amando', $1),
+        ('Hi!', 'kamal', $1);`,
+        [currentDate]
+    );
     await client.end();
 
     console.log("done")
