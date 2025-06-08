@@ -36,15 +36,14 @@ indexRouter.get("/messages/:msgId", asyncHandler(async (req, res) => {
   res.render("messageDetails", {msg: msgObj});
 }))
 
-indexRouter.post("/new", (req, res)=> {
+indexRouter.post("/new", asyncHandler(async (req, res)=> {
   const newMsg = {
-    id: messages.length + 1,
     text: req.body.userText || 'no text submit' ,
-    user: req.body.userName || 'no input sir!',
+    username: req.body.userName || 'no input sir!',
     added: new Date()
   }
-  messages.push(newMsg);
+  await db.createMsg(newMsg);
   res.redirect("/");
-})
+}))
 
 module.exports = indexRouter;
