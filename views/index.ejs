@@ -10,7 +10,7 @@
             <% messages.forEach( msg => { %>
                 <a href=<%= `/messages/${msg.id}`%>>
                     <div class="message">
-                        <h2><%= msg.user %></h2>
+                        <h2><%= msg.username %></h2>
                         <p> <%= msg.added %></p>
                         <p><%= msg.text %></p>
                     </div>

@@ -3,47 +3,38 @@ const { format } = require("date-fns");
 const NotFoundMessage = require("../errors/NotFoundMessage");
 
 const indexRouter = Router();
+// async handler 
+const asyncHandler = require('express-async-handler');
+const db = require('../db/queries')
 
-const messages = [
-  {
-    id: 1,
-    text: "Hi there!",
-    user: "Amando",
-    added: new Date()
-  }, 
-  {
-    id: 2,
-    text: "Hi !",
-    user: "Charles",
-    added: new Date()
-  }, 
-]
 
-indexRouter.get("/", (req, res) => {
-  const formattedMessages = messages.map(msg =>  {
-    
+indexRouter.get("/", asyncHandler(async(req, res) => {
+  const messages = await db.getAllMessages();
+
+  const formattedMessages = messages.map(msg =>  {  
     return {
       ...msg,
       added: format(msg.added, "dd/MM/yyyy hh:mm a")
     }
   })
-  res.render("index",{messages: formattedMessages} )
-})
 
-indexRouter.get("/messages/:msgId", (req, res) => {
-  let myMsg = messages.find(msg => msg.id == req.params.msgId);
+  res.render("index",{messages: formattedMessages} )
+}))
+
+indexRouter.get("/messages/:msgId", asyncHandler(async (req, res) => {
+  const { msgId } = req.params;
+  let msgObj = await db.getMessageById(Number(msgId));
   
-  if(!myMsg) {
+  if(msgObj == {}) {
     throw new NotFoundMessage("The Message Not Found!")
   }
 
-  myMsg = {
-    ...myMsg, 
-    added: format(myMsg.added, "dd/MM/yyyy hh:mm a")
+  msgObj = {
+    ...msgObj[0],
+    added:  format(msgObj[0].added, "dd/MM/yyyy hh:mm a")
   }
-
-  res.render("messageDetails", {msg: myMsg});
-})
+  res.render("messageDetails", {msg: msgObj});
+}))
 
 indexRouter.post("/new", (req, res)=> {
   const newMsg = {
